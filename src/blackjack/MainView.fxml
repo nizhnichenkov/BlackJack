@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.effect.Light.Distant?>
+<?import javafx.scene.effect.Lighting?>
+<?import javafx.scene.effect.Shadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1050.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="blackjack.MainViewController">
+   <children>
+      <ImageView fitHeight="900.0" fitWidth="1050.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/wood_bg.jpeg" />
+         </image>
+      </ImageView>
+      <VBox prefHeight="900.0" prefWidth="1050.0">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="File">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="Help">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </MenuBar>
+            <Pane prefHeight="660.0" prefWidth="1050.0">
+               <children>
+                  <ImageView fitHeight="660.0" fitWidth="1018.0" layoutX="16.0" layoutY="11.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/table_cover.jpg" />
+                     </image>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </ImageView>
+                  <Line endX="190.0" endY="640.0" fill="#6b0b0b00" startX="190.0" startY="40.0">
+                     <effect>
+                        <DropShadow spread="0.77" />
+                     </effect>
+                  </Line>
+                  <Line endX="1020.0" endY="330.0" startX="30.0" startY="330.0">
+                     <effect>
+                        <DropShadow spread="0.77" />
+                     </effect>
+                  </Line>
+                  <Text fill="#fffffff0" layoutX="39.0" layoutY="282.0" strokeType="OUTSIDE" strokeWidth="0.0" text="DEALER">
+                     <font>
+                        <Font name="Courier New Bold" size="36.0" />
+                     </font>
+                     <effect>
+                        <Lighting bumpInput="$null">
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Text>
+                  <Text fx:id="dealerScoreText" fill="WHITE" layoutX="51.0" layoutY="188.0" strokeType="OUTSIDE" text="0">
+                     <font>
+                        <Font size="96.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Text>
+                  <Text fill="#fffdfd" layoutX="39.0" layoutY="595.0" strokeType="OUTSIDE" strokeWidth="0.0" text="PLAYER">
+                     <font>
+                        <Font name="Courier New Bold" size="36.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Lighting bumpInput="$null">
+                                 <light>
+                                    <Light.Distant />
+                                 </light>
+                              </Lighting>
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Text>
+                  <Text fx:id="playerScoreText" fill="WHITE" layoutX="52.0" layoutY="509.0" text="0">
+                     <font>
+                        <Font size="96.0" />
+                     </font>
+                     <effect>
+                        <Lighting>
+                           <bumpInput>
+                              <Shadow />
+                           </bumpInput>
+                           <light>
+                              <Light.Distant />
+                           </light>
+                        </Lighting>
+                     </effect>
+                  </Text>
+                  <HBox fx:id="dealerCardsHBox" layoutX="204.0" layoutY="116.0" prefHeight="184.0" prefWidth="817.0" spacing="10.0" />
+                  <HBox fx:id="playerCardsHBox" layoutX="204.0" layoutY="437.0" prefHeight="184.0" prefWidth="817.0" spacing="10.0" />
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </Pane>
+            <Rectangle fill="#3832320a" height="5.0" opacity="0.25" stroke="#686060" strokeType="INSIDE" strokeWidth="0.0" width="1050.0" y="20.0">
+               <effect>
+                  <DropShadow spread="0.7" />
+               </effect>
+            </Rectangle>
+            <Pane layoutX="10.0" prefHeight="211.0" prefWidth="1050.0">
+               <effect>
+                  <DropShadow />
+               </effect>
+               <children>
+                  <Button fx:id="betInNewGameButton" layoutX="333.0" layoutY="75.0" mnemonicParsing="false" onAction="#startNewRound" prefHeight="41.0" prefWidth="192.0" style="-fx-background-color: orange;" text="Bet in a new game">
+                     <graphic>
+                        <ImageView fitHeight="52.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/betBtnLogo.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Button>
+                  <ImageView fx:id="dollarBillImageView" fitHeight="29.0" fitWidth="74.0" layoutX="57.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@images/dollarBill.jpg" />
+                     </image>
+                  </ImageView>
+                  <TextField fx:id="inputMoneyBet" layoutX="535.0" layoutY="75.0" onAction="#validateInput" onMouseClicked="#validateInput" prefHeight="60.0" prefWidth="113.0" promptText="Enter amount..." style="-fx-background-color: GREY;">
+                     <effect>
+                        <DropShadow />
+                     </effect></TextField>
+                  <Text fx:id="balanceText" fill="WHITE" layoutX="137.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Text>
+                  <Text fx:id="userNotificationText" fill="#fffe00" layoutX="394.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Blackjack">
+                     <font>
+                        <Font name="Apple SD Gothic Neo Regular" size="24.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Text>
+                  <Text fx:id="betText" fill="WHITE" layoutX="63.0" layoutY="112.0" strokeType="OUTSIDE" strokeWidth="0.0" text="BET: " visible="false">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Text>
+                  <Text fx:id="moneyBetText" fill="WHITE" layoutX="140.0" layoutY="111.0" strokeType="OUTSIDE" strokeWidth="0.0" text="money" visible="false">
+                     <font>
+                        <Font size="21.0" />
+                     </font>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                  </Text>
+                  <Button fx:id="StandButton" layoutX="525.0" layoutY="55.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-insets: 2;" text="STAND" visible="false">
+                     <font>
+                        <Font name="Courier New Bold" size="21.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+                  <Button fx:id="HitButton" layoutX="379.0" layoutY="55.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: green; -fx-background-insets: 2;" text="HIT" visible="false">
+                     <font>
+                        <Font name="Courier New Bold" size="21.0" />
+                     </font>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </Pane>
+         </children>
+      </VBox>
+   </children>
+</Pane>

@@ -21,7 +21,9 @@ public class DeckModel {
         refill();
     }
 
-    // add cards to the deck 
+    /**
+     * Refills an empty deck with 52 cards.
+     */
     public final void refill() {
         int cardCount = 0;
 
@@ -34,7 +36,11 @@ public class DeckModel {
 
     }
 
-    // draw a card from the deck 
+    /**
+     * Draws a randomly selected card from the deck of 52 cards.
+     *
+     * @return the card object
+     */
     public CardModel drawCard() {
         CardModel card = null;
 

@@ -40,6 +40,14 @@ public class CardModel extends Parent {
     public final Rank rank;
     public final int value;
 
+    /**
+     * This method initializes cards with a suit and a rank. 
+     * Additionally, an image is associated for each of the 52 cards.
+     * Thus, whenever a card is drawn from the deck, it gets automatically displayed on the screen 
+     * on the side of the caller ( player/dealer ).
+     * @param suit - SPADES, HEARTS, CLUBS, DIAMONDS
+     * @param rank - 2,3,4,5,6,7,8,9,10,J,K,Q,A
+     */
     public CardModel(Suit suit, Rank rank) {
         this.suit = suit;
         this.rank = rank;

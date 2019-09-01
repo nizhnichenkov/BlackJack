@@ -31,9 +31,15 @@ public class HandModel {
         this.cards = cards;
     }
 
+    /**
+     * Takes the card that is already drawn randomly 
+     * from the deck of 52 cards and adds it to caller's hand 
+     * and calculates caller's total hand value. 
+     * @param card the card object 
+     */
     public void takeCard(CardModel card) {
         numOfDrawnCards += 1;
-        
+
         cards.add(card);
 
         // check if there's an ACE in current hand
@@ -54,7 +60,9 @@ public class HandModel {
 
     }
 
-    // reset current game 
+    /**
+     * resets caller's stats to 0
+     */
     public void reset() {
         cards.clear();
         value.set(0);
@@ -62,11 +70,19 @@ public class HandModel {
         numOfDrawnCards = 0;
     }
 
+    /**
+     * 
+     * @return total value of caller's hand
+     */
     public SimpleIntegerProperty valueProperty() {
         return value;
 
     }
 
+    /**
+     * 
+     * @return number of cards drawn from the deck 
+     */
     public int getNumOfDrawnCards() {
         return numOfDrawnCards;
     }

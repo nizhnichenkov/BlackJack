@@ -150,7 +150,7 @@
                   <DropShadow />
                </effect>
                <children>
-                  <Button fx:id="betInNewGameButton" layoutX="333.0" layoutY="75.0" mnemonicParsing="false" onAction="#startNewRound" prefHeight="41.0" prefWidth="192.0" style="-fx-background-color: orange;" text="Bet in a new game">
+                  <Button fx:id="betInNewGameButton" disable="true" layoutX="315.0" layoutY="75.0" mnemonicParsing="false" onAction="#startNewRound" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: orange;" text="Bet in a new game" textFill="RED">
                      <graphic>
                         <ImageView fitHeight="52.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -161,6 +161,9 @@
                      <effect>
                         <DropShadow />
                      </effect>
+                     <font>
+                        <Font name="Menlo Bold" size="13.0" />
+                     </font>
                   </Button>
                   <ImageView fx:id="dollarBillImageView" fitHeight="29.0" fitWidth="74.0" layoutX="57.0" layoutY="49.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -179,7 +182,7 @@
                         <DropShadow />
                      </effect>
                   </Text>
-                  <Text fx:id="userNotificationText" fill="#fffe00" layoutX="394.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Blackjack">
+                  <Text fx:id="userNotificationText" fill="#fffe00" layoutX="406.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Blackjack">
                      <font>
                         <Font name="Apple SD Gothic Neo Regular" size="24.0" />
                      </font>

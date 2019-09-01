@@ -138,13 +138,16 @@ public class MainViewController implements Initializable {
         /**
          * Check if user has run out of money:. If so, ask him to play again.
          */
-//        balance.addListener(
-//                (obs, old, newValue) -> {
-//                    if (newValue.intValue() == 0 && bet.get() == 0) {
-//                        // TODO: add a 'ask to play again' method 
-//                    }
-//                }
-//        );
+        balance.addListener(
+                (obs, old, newValue) -> {
+
+                    if (newValue.intValue() == 0) {
+                        // TODO: add a 'ask to play again' method 
+                        System.out.println("******************END GAME******************");
+                    }
+                }
+        );
+
         /**
          * Add action to hit button. Whenever the hit button is pressed - the player will draw a card from the deck.
          */
@@ -167,6 +170,22 @@ public class MainViewController implements Initializable {
                 if (!endMethodSemaphore) {
                     endGame();
                 }
+            }
+        }
+        );
+
+        /**
+         * This method validation does not let the player to enter a bet that is higher than the available balance or less than or equal to 0.
+         */
+        inputMoneyBet.textProperty().addListener((obs, old, newValue) -> {
+            if (newValue.equals("")) {
+                betInNewGameButton.setDisable(true);
+            }
+            if (Integer.parseInt(newValue) <= 0 || Integer.parseInt(newValue) > balance.get()) {
+                betInNewGameButton.setDisable(true);
+            }
+            if (Integer.parseInt(newValue) > 0 && Integer.parseInt(newValue) <= balance.get()) {
+                betInNewGameButton.setDisable(false);
             }
         }
         );
@@ -338,6 +357,7 @@ public class MainViewController implements Initializable {
 
         betInNewGameButton.setVisible(true);
         inputMoneyBet.setVisible(true);
+        bet.set(0); // set bet to default value
 
     }
 

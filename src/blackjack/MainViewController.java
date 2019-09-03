@@ -63,24 +63,6 @@ public class MainViewController implements Initializable {
     @FXML
     ImageView dollarBillImageView;
 
-    /**
-     * Validate the input bet from the user. This piece of code doesn't let the user input anything else but integers in the range [0-9]
-     */
-    @FXML
-    private void validateInput() {
-
-        inputMoneyBet.textProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                // validate user input ( make only integers available to be typed in ) 
-                // and replace every illegal character with "" 
-                if (!newValue.matches("\\d*")) {
-                    inputMoneyBet.setText(newValue.replaceAll("[^\\d]", ""));
-                }
-            }
-        });
-    }
-
     @FXML
     private void settingUpGame() {
 
@@ -119,6 +101,20 @@ public class MainViewController implements Initializable {
         playerScoreText.textProperty().bind(new SimpleStringProperty("").concat(player.valueProperty().asString()));
         dealerScoreText.textProperty().bind(new SimpleStringProperty("").concat(dealer.valueProperty().asString()));
 
+        /**
+         * Validate the input bet from the user. This piece of code doesn't let the user input anything else but integers in the range [0-9]
+         */
+        inputMoneyBet.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                // validate user input ( make only integers available to be typed in ) 
+                // and replace every illegal character with "" 
+                if (!newValue.matches("\\d*")) {
+                    inputMoneyBet.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
+
         player.valueProperty().addListener((obs, old, newValue) -> {
             if (newValue.intValue() >= 21) {
                 if (!endMethodSemaphore) {
@@ -134,19 +130,6 @@ public class MainViewController implements Initializable {
                 }
             }
         });
-
-        /**
-         * Check if user has run out of money:. If so, ask him to play again.
-         */
-        balance.addListener(
-                (obs, old, newValue) -> {
-
-                    if (newValue.intValue() == 0) {
-                        // TODO: add a 'ask to play again' method 
-                        System.out.println("******************END GAME******************");
-                    }
-                }
-        );
 
         /**
          * Add action to hit button. Whenever the hit button is pressed - the player will draw a card from the deck.
@@ -181,12 +164,25 @@ public class MainViewController implements Initializable {
             if (newValue.equals("")) {
                 betInNewGameButton.setDisable(true);
             }
-            if (Integer.parseInt(newValue) <= 0 || Integer.parseInt(newValue) > balance.get()) {
-                betInNewGameButton.setDisable(true);
+
+            try {
+                if (Integer.parseInt(newValue) <= 0 || Integer.parseInt(newValue) > balance.get()) {
+                    betInNewGameButton.setDisable(true);
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("INTEGER PARSER EXCEPTION");
             }
-            if (Integer.parseInt(newValue) > 0 && Integer.parseInt(newValue) <= balance.get()) {
-                betInNewGameButton.setDisable(false);
+
+            try {
+                if (Integer.parseInt(newValue) > 0 && Integer.parseInt(newValue) <= balance.get()) {
+                    betInNewGameButton.setDisable(false);
+                }
+
+            } catch (NumberFormatException e) {
+                System.out.println("INTEGER PARSER EXCEPTION.");
             }
+
         }
         );
 
@@ -205,12 +201,6 @@ public class MainViewController implements Initializable {
 
         bet.set(Integer.parseInt(inputMoneyBet.getText()));
 
-        /**
-         * TODO: validate input bet ( bet cannot be <= 0 and > available balance ) .
-         */
-//        if (bet.get() <= 0 || bet.get() > balance.get()) {
-//            userNotificationText.setText("Invalid bet, please try again...");
-//            userNotificationText.setVisible(true);
         System.out.println("BALANCE BEFORE BET: " + balance.get());
 
         // update balance 
@@ -339,12 +329,26 @@ public class MainViewController implements Initializable {
             userNotificationText.setText("YOU LOST YOUR BET"); // announce winner 
             userNotificationText.setVisible(true);
 
+            /**
+             * If player runs out of money - ask him to start a new game.
+             */
+            if (balance.get() == 0) {
+                System.out.println("END GAME");
+            }
+
         } /**
          * If dealer has a score lower than 21 but greater than the player's - dealer wins.
          */
         else if (dealer.valueProperty().get() < 21 && dealer.valueProperty().get() > player.valueProperty().get()) {
             userNotificationText.setText("YOU LOST YOUR BET"); // announce winner 
             userNotificationText.setVisible(true);
+
+            /**
+             * If player runs out of money - ask him to start a new game.
+             */
+            if (balance.get() == 0) {
+                System.out.println("END GAME");
+            }
         }
 
         // enable/disable visibility of objects on display 
@@ -356,8 +360,9 @@ public class MainViewController implements Initializable {
         StandButton.setVisible(false);
 
         betInNewGameButton.setVisible(true);
+        inputMoneyBet.setText("");
         inputMoneyBet.setVisible(true);
-        bet.set(0); // set bet to default value
+        bet.set(0);
 
     }
 

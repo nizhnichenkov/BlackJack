@@ -170,7 +170,7 @@
                         <Image url="@images/dollarBill.jpg" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="inputMoneyBet" layoutX="535.0" layoutY="75.0" onAction="#validateInput" onMouseClicked="#validateInput" prefHeight="60.0" prefWidth="113.0" promptText="Enter amount..." style="-fx-background-color: GREY;">
+                  <TextField fx:id="inputMoneyBet" layoutX="535.0" layoutY="75.0" prefHeight="60.0" prefWidth="113.0" promptText="Enter amount..." style="-fx-background-color: GREY;">
                      <effect>
                         <DropShadow />
                      </effect></TextField>

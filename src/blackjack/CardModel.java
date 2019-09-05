@@ -41,10 +41,8 @@ public class CardModel extends Parent {
     public final int value;
 
     /**
-     * This method initializes cards with a suit and a rank. 
-     * Additionally, an image is associated for each of the 52 cards.
-     * Thus, whenever a card is drawn from the deck, it gets automatically displayed on the screen 
-     * on the side of the caller ( player/dealer ).
+     * This method initializes cards with a suit and a rank. Additionally, an image is associated for each of the 52 cards. Thus, whenever a card is drawn from the deck, it gets automatically displayed on the screen on the side of the caller ( player/dealer ).
+     *
      * @param suit - SPADES, HEARTS, CLUBS, DIAMONDS
      * @param rank - 2,3,4,5,6,7,8,9,10,J,K,Q,A
      */
@@ -52,20 +50,19 @@ public class CardModel extends Parent {
         this.suit = suit;
         this.rank = rank;
         this.value = rank.value;
-        
+
         Image image = new Image(getClass().getResourceAsStream("images/" + this.rank + "-" + this.suit + ".png"));
-        
-        
+
         // create a rectangle and fit the image into it
         Rectangle cardImg = new Rectangle(120, 170);
-        
+
         // make the rectangle have curvy corners 
         cardImg.setArcWidth(20);
         cardImg.setArcHeight(20);
-        
+
         // fit the image into the rectangle 
         cardImg.setFill(new ImagePattern(image));
-        
+
         // paint the rectangle on screen 
         getChildren().add(new StackPane(cardImg));
 

@@ -7,15 +7,14 @@ package blackjack;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.css.SimpleStyleableObjectProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -35,6 +34,7 @@ public class MainViewController implements Initializable {
     private SimpleIntegerProperty balance = new SimpleIntegerProperty(0);
     private SimpleIntegerProperty bet = new SimpleIntegerProperty(0);
     private Boolean endMethodSemaphore = false;
+    private Boolean gameOver = false;
 
     @FXML
     Text dealerScoreText;
@@ -61,10 +61,27 @@ public class MainViewController implements Initializable {
     @FXML
     Button StandButton;
     @FXML
+    Button playAgainButton;
+    @FXML
+    Button exitGameButton;
+    @FXML
     ImageView dollarBillImageView;
 
     @FXML
     private void settingUpGame() {
+
+        // set game over status to false
+        gameOver = false;
+
+        // hide play again and exit game buttons
+        playAgainButton.setVisible(false);
+        exitGameButton.setVisible(false);
+
+        // show bet in a new game button / enter amount text field 
+        betInNewGameButton.setVisible(true);
+        betInNewGameButton.setDisable(true);
+
+        inputMoneyBet.setVisible(true);
 
         // initialize dealer, player objects 
         // connect them to HBOX that represent them in the GUI
@@ -78,11 +95,11 @@ public class MainViewController implements Initializable {
         balanceText.setVisible(true);
 
         // disable buttons and objects 
-        userNotificationText.setVisible(false);
+        userNotificationText.setText("Welcome to Blackjack");
+        userNotificationText.setVisible(true);
         HitButton.setVisible(false);
         StandButton.setVisible(false);
         moneyBetText.setVisible(false);
-        userNotificationText.setVisible(false);
 
         // enable buttons and objects 
         betInNewGameButton.setVisible(true);
@@ -326,7 +343,7 @@ public class MainViewController implements Initializable {
          * If dealer has a score of 21 or lower, but player has exceeded 21 - dealer wins.
          */
         else if (dealer.valueProperty().get() <= 21 && (player.valueProperty().get() > 21 || player.valueProperty().get() < 21)) {
-            userNotificationText.setText("YOU LOST YOUR BET"); // announce winner 
+            userNotificationText.setText("YOU LOST YOUR BET"); // announce winner
             userNotificationText.setVisible(true);
 
             /**
@@ -334,6 +351,8 @@ public class MainViewController implements Initializable {
              */
             if (balance.get() == 0) {
                 System.out.println("END GAME");
+                gameOver = true;
+                playAgain();
             }
 
         } /**
@@ -348,22 +367,96 @@ public class MainViewController implements Initializable {
              */
             if (balance.get() == 0) {
                 System.out.println("END GAME");
+                gameOver = true;
+                playAgain();
             }
         }
 
-        // enable/disable visibility of objects on display 
-        betText.setVisible(false);
-        moneyBetText.setVisible(false);
-        balanceText.setVisible(true);
+        if (gameOver == true) {
+            // enable/disable visibility of objects on display 
+            betText.setVisible(false);
+            moneyBetText.setVisible(false);
+            balanceText.setVisible(false);
 
-        HitButton.setVisible(false);
-        StandButton.setVisible(false);
+            HitButton.setVisible(false);
+            StandButton.setVisible(false);
 
-        betInNewGameButton.setVisible(true);
-        inputMoneyBet.setText("");
-        inputMoneyBet.setVisible(true);
-        bet.set(0);
+            betInNewGameButton.setVisible(false);
+            inputMoneyBet.setText("");
+            inputMoneyBet.setVisible(false);
+            bet.set(0);
 
+        } else {
+            // enable/disable visibility of objects on display 
+            betText.setVisible(false);
+            moneyBetText.setVisible(false);
+            balanceText.setVisible(true);
+
+            HitButton.setVisible(false);
+            StandButton.setVisible(false);
+
+            betInNewGameButton.setVisible(true);
+            inputMoneyBet.setText("");
+            inputMoneyBet.setVisible(true);
+            bet.set(0);
+        }
+
+    }
+
+    /**
+     * Asks the player if he'd like to play the game again ( default settings ), or quit the game.
+     */
+    private void playAgain() {
+        // disable objects required for the game to be played 
+        betInNewGameButton.setVisible(false);
+        inputMoneyBet.setVisible(false);
+        balanceText.setVisible(false);
+        dollarBillImageView.setVisible(false);
+
+        // change user notification text and notify user 
+        userNotificationText.setText("GAME OVER!");
+        userNotificationText.setVisible(true);
+
+        // allign play again and exit game buttons 
+        playAgainButton.setAlignment(Pos.CENTER);
+        exitGameButton.setAlignment(Pos.CENTER);
+
+        // make buttons visible 
+        playAgainButton.setVisible(true);
+        exitGameButton.setVisible(true);
+
+        /**
+         * This button would do some cleanup and 'restart' the application.
+         */
+        playAgainButton.setOnAction(e -> {
+            resetStats();
+            settingUpGame();
+        });
+
+        /**
+         * This button exits the game.
+         */
+        exitGameButton.setOnAction(e -> {
+            Stage stage = (Stage) exitGameButton.getScene().getWindow();
+            stage.close();
+        });
+    }
+
+    /**
+     * Method that exits the game.
+     */
+    @FXML
+    private void exitGame() {
+        Platform.exit();
+    }
+
+    /**
+     * Method that resets game stats to their default values.
+     */
+    private void resetStats() {
+        player.reset();
+        dealer.reset();
+        deck.refill();
     }
 
     /**

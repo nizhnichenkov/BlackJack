@@ -32,14 +32,9 @@
             <MenuBar>
               <menus>
                 <Menu mnemonicParsing="false" text="File">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="Close" />
-                  </items>
-                </Menu>
-                <Menu mnemonicParsing="false" text="Help">
-                  <items>
-                    <MenuItem mnemonicParsing="false" text="About" />
-                  </items>
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#exitGame" text="Close" />
+                     </items>
                 </Menu>
               </menus>
                <effect>
@@ -150,7 +145,7 @@
                   <DropShadow />
                </effect>
                <children>
-                  <Button fx:id="betInNewGameButton" disable="true" layoutX="315.0" layoutY="75.0" mnemonicParsing="false" onAction="#startNewRound" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: orange;" text="Bet in a new game" textFill="RED">
+                  <Button fx:id="betInNewGameButton" disable="true" layoutX="324.0" layoutY="75.0" mnemonicParsing="false" onAction="#startNewRound" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: orange;" text="Bet in a new game" textFill="RED">
                      <graphic>
                         <ImageView fitHeight="52.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -170,21 +165,16 @@
                         <Image url="@images/dollarBill.jpg" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="inputMoneyBet" layoutX="535.0" layoutY="75.0" prefHeight="60.0" prefWidth="113.0" promptText="Enter amount..." style="-fx-background-color: GREY;">
+                  <TextField fx:id="inputMoneyBet" layoutX="566.0" layoutY="75.0" prefHeight="60.0" prefWidth="113.0" promptText="Enter amount..." style="-fx-background-color: GREY;">
+                     <font>
+                        <Font name="Avenir Next Regular" size="13.0" />
+                     </font>
                      <effect>
                         <DropShadow />
                      </effect></TextField>
                   <Text fx:id="balanceText" fill="WHITE" layoutX="137.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
                      <font>
                         <Font size="21.0" />
-                     </font>
-                     <effect>
-                        <DropShadow />
-                     </effect>
-                  </Text>
-                  <Text fx:id="userNotificationText" fill="#fffe00" layoutX="406.0" layoutY="36.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Blackjack">
-                     <font>
-                        <Font name="Apple SD Gothic Neo Regular" size="24.0" />
                      </font>
                      <effect>
                         <DropShadow />
@@ -222,6 +212,28 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Button>
+                  <Button fx:id="playAgainButton" alignment="CENTER" layoutX="348.0" layoutY="75.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="177.0" style="-fx-background-color: green;" text="Play Again" textFill="#ffe800" visible="false">
+                     <font>
+                        <Font name="PT Mono Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="exitGameButton" alignment="CENTER" layoutX="535.0" layoutY="75.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="177.0" style="-fx-background-color: red;" text="Exit Game" visible="false">
+                     <font>
+                        <Font name="PT Mono Bold" size="18.0" />
+                     </font>
+                  </Button>
+                  <HBox alignment="TOP_CENTER" layoutX="381.0" layoutY="17.0" prefHeight="67.0" prefWidth="288.0">
+                     <children>
+                        <Text fx:id="userNotificationText" fill="#fffe00" strokeType="OUTSIDE" strokeWidth="0.0" text="Welcome to Blackjack" textOrigin="CENTER">
+                           <font>
+                              <Font name="PT Mono" size="24.0" />
+                           </font>
+                           <effect>
+                              <DropShadow />
+                           </effect>
+                        </Text>
+                     </children>
+                  </HBox>
                </children>
             </Pane>
          </children>

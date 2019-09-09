@@ -145,7 +145,7 @@
                   <DropShadow />
                </effect>
                <children>
-                  <Button fx:id="betInNewGameButton" disable="true" layoutX="324.0" layoutY="75.0" mnemonicParsing="false" onAction="#startNewRound" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: orange;" text="Bet in a new game" textFill="RED">
+                  <Button fx:id="betInNewGameButton" disable="true" focusTraversable="false" layoutX="324.0" layoutY="75.0" mnemonicParsing="false" onAction="#startNewRound" prefHeight="60.0" prefWidth="210.0" style="-fx-background-color: orange;" text="Bet in a new game" textFill="RED">
                      <graphic>
                         <ImageView fitHeight="52.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -165,13 +165,13 @@
                         <Image url="@images/dollarBill.jpg" />
                      </image>
                   </ImageView>
-                  <TextField fx:id="inputMoneyBet" layoutX="566.0" layoutY="75.0" prefHeight="60.0" prefWidth="113.0" promptText="Enter amount..." style="-fx-background-color: GREY;">
+                  <TextField fx:id="inputMoneyBet" focusTraversable="false" layoutX="566.0" layoutY="75.0" prefHeight="60.0" prefWidth="113.0" promptText="Place bet..." style="-fx-background-color: Black; -fx-text-inner-color: Yellow;">
                      <font>
-                        <Font name="Avenir Next Regular" size="13.0" />
+                        <Font name="Comic Sans MS" size="18.0" />
                      </font>
-                     <effect>
-                        <DropShadow />
-                     </effect></TextField>
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets></TextField>
                   <Text fx:id="balanceText" fill="WHITE" layoutX="137.0" layoutY="71.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1000">
                      <font>
                         <Font size="21.0" />
@@ -196,7 +196,7 @@
                         <DropShadow />
                      </effect>
                   </Text>
-                  <Button fx:id="StandButton" layoutX="525.0" layoutY="55.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-insets: 2;" text="STAND" visible="false">
+                  <Button fx:id="StandButton" focusTraversable="false" layoutX="525.0" layoutY="55.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: red; -fx-background-insets: 2;" text="STAND" visible="false">
                      <font>
                         <Font name="Courier New Bold" size="21.0" />
                      </font>
@@ -204,7 +204,7 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="HitButton" layoutX="379.0" layoutY="55.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: green; -fx-background-insets: 2;" text="HIT" visible="false">
+                  <Button fx:id="HitButton" focusTraversable="false" layoutX="379.0" layoutY="55.0" mnemonicParsing="false" prefHeight="100.0" prefWidth="100.0" style="-fx-background-color: green; -fx-background-insets: 2;" text="HIT" visible="false">
                      <font>
                         <Font name="Courier New Bold" size="21.0" />
                      </font>
@@ -212,12 +212,12 @@
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                      </padding>
                   </Button>
-                  <Button fx:id="playAgainButton" alignment="CENTER" layoutX="348.0" layoutY="75.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="177.0" style="-fx-background-color: green;" text="Play Again" textFill="#ffe800" visible="false">
+                  <Button fx:id="playAgainButton" alignment="CENTER" focusTraversable="false" layoutX="348.0" layoutY="75.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="177.0" style="-fx-background-color: green;" text="Play Again" visible="false">
                      <font>
                         <Font name="PT Mono Bold" size="18.0" />
                      </font>
                   </Button>
-                  <Button fx:id="exitGameButton" alignment="CENTER" layoutX="535.0" layoutY="75.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="177.0" style="-fx-background-color: red;" text="Exit Game" visible="false">
+                  <Button fx:id="exitGameButton" alignment="CENTER" focusTraversable="false" layoutX="535.0" layoutY="75.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="177.0" style="-fx-background-color: red;" text="Exit Game" visible="false">
                      <font>
                         <Font name="PT Mono Bold" size="18.0" />
                      </font>

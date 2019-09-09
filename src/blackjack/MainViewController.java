@@ -124,6 +124,18 @@ public class MainViewController implements Initializable {
         inputMoneyBet.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+
+                // if user enters 0 as first character 
+                // this piece of code will remove it 
+                try {
+                    Character c1 = new Character('0');
+                    if (c1.equals(newValue.charAt(0))) {
+                        inputMoneyBet.setText(newValue.replaceAll("0", ""));
+                    }
+                } catch (StringIndexOutOfBoundsException e) {
+                    System.out.println("Found '0' as first char. ");
+                }
+
                 // validate user input ( make only integers available to be typed in ) 
                 // and replace every illegal character with "" 
                 if (!newValue.matches("\\d*")) {

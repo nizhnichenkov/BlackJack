@@ -74,4 +74,4 @@ http://github.com - automatic!
 > IMAGES: 
 
 
-![](https://github.com/nizhnichenkov/slav.blackjack/blob/master/src/blackjack/images/ACE-HEARTS.png =200x200)
+![](https://github.com/nizhnichenkov/slav.blackjack/blob/master/src/blackjack/images/ACE-HEARTS.png)
